@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7fb">
+    <title>Service Desk | Ticket Prioritisation</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Service Desk home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>service<span class="brand-light">desk</span></span>
+      </a>
+      <div class="topbar-meta">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span>Demo workspace</span>
+        <span class="avatar" aria-label="Signed in as Alex Morgan">AM</span>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="page-heading" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">OPERATIONS <span>/</span> SERVICE DESK</p>
+          <h1 id="page-title">Ticket prioritisation</h1>
+          <p class="subtitle">A clear view of what needs attention and when.</p>
+        </div>
+        <div class="heading-note"><span class="clock-icon" aria-hidden="true">◷</span> Response targets shown in elapsed hours</div>
+      </section>
+
+      <section class="summary-grid" aria-label="Ticket overview">
+        <article class="metric-card">
+          <div class="metric-top"><span>Active tickets</span><span class="metric-icon active-icon" aria-hidden="true">▤</span></div>
+          <div class="metric-value" id="active-count">—</div>
+          <div class="metric-caption">Need a response or follow-up</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-top"><span>Overdue response</span><span class="metric-icon overdue-icon" aria-hidden="true">!</span></div>
+          <div class="metric-value" id="overdue-count">—</div>
+          <div class="metric-caption">Active tickets past their target</div>
+        </article>
+        <article class="distribution-card">
+          <h2>By status</h2>
+          <div class="count-list" id="status-counts" aria-live="polite"></div>
+        </article>
+        <article class="distribution-card">
+          <h2>By priority</h2>
+          <div class="count-list" id="priority-counts" aria-live="polite"></div>
+        </article>
+      </section>
+
+      <section class="ticket-panel" aria-labelledby="ticket-list-title">
+        <div class="panel-heading">
+          <div>
+            <h2 id="ticket-list-title">All tickets <span class="ticket-total" id="visible-count"></span></h2>
+            <p>Priority is calculated from impact, urgency, and affected users.</p>
+          </div>
+          <div class="filters" aria-label="Filter and sort tickets">
+            <label class="select-wrap">
+              <span class="sr-only">Filter by priority</span>
+              <select id="priority-filter">
+                <option value="all">All priorities</option>
+                <option value="P1">P1 · Critical</option>
+                <option value="P2">P2 · High</option>
+                <option value="P3">P3 · Medium</option>
+                <option value="P4">P4 · Low</option>
+              </select>
+            </label>
+            <label class="select-wrap">
+              <span class="sr-only">Filter by status</span>
+              <select id="status-filter">
+                <option value="all">All statuses</option>
+                <option value="New">New</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Waiting">Waiting</option>
+                <option value="Resolved">Resolved</option>
+              </select>
+            </label>
+            <label class="select-wrap">
+              <span class="sr-only">Sort tickets</span>
+              <select id="sort-order">
+                <option value="priority">Sort: Priority</option>
+                <option value="deadline">Sort: Response deadline</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Ticket</th>
+                <th scope="col">Impact / urgency / users</th>
+                <th scope="col">Priority &amp; reason</th>
+                <th scope="col">Response target</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody id="ticket-rows"></tbody>
+          </table>
+          <div class="empty-state" id="empty-state" hidden>
+            <span class="empty-icon" aria-hidden="true">⌕</span>
+            <strong>No tickets match these filters</strong>
+            <span>Try changing the priority or status filter.</span>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <span>Fictional sample data · Changes last for this browser session</span>
+          <span class="rules-link">Priority rules are documented in the project README</span>
+        </div>
+      </section>
+      <p class="page-footnote">Priorities and response targets are demo assumptions, not an agreed service-level policy.</p>
+    </main>
+  </body>
+</html>
